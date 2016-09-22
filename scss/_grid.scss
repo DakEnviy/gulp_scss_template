@@ -1037,7 +1037,7 @@ hr {
 .visible-lg-inline-block {
 	display: none !important;
 }
-@media (max-width: 767px) {
+@media (max-width: $break_sm - 1px) {
 	.visible-xs {
 		display: block !important;
 	}
@@ -1052,22 +1052,22 @@ hr {
 		display: table-cell !important;
 	}
 }
-@media (max-width: 767px) {
+@media (max-width: $break_sm - 1px) {
 	.visible-xs-block {
 		display: block !important;
 	}
 }
-@media (max-width: 767px) {
+@media (max-width: $break_sm - 1px) {
 	.visible-xs-inline {
 		display: inline !important;
 	}
 }
-@media (max-width: 767px) {
+@media (max-width: $break_sm - 1px) {
 	.visible-xs-inline-block {
 		display: inline-block !important;
 	}
 }
-@media (min-width: $break_sm) and (max-width: 991px) {
+@media (min-width: $break_sm) and (max-width: $break_md - 1px) {
 	.visible-sm {
 		display: block !important;
 	}
@@ -1082,22 +1082,22 @@ hr {
 		display: table-cell !important;
 	}
 }
-@media (min-width: $break_sm) and (max-width: 991px) {
+@media (min-width: $break_sm) and (max-width: $break_md - 1px) {
 	.visible-sm-block {
 		display: block !important;
 	}
 }
-@media (min-width: $break_sm) and (max-width: 991px) {
+@media (min-width: $break_sm) and (max-width: $break_md - 1px) {
 	.visible-sm-inline {
 		display: inline !important;
 	}
 }
-@media (min-width: $break_sm) and (max-width: 991px) {
+@media (min-width: $break_sm) and (max-width: $break_md - 1px) {
 	.visible-sm-inline-block {
 		display: inline-block !important;
 	}
 }
-@media (min-width: $break_md) and (max-width: 1199px) {
+@media (min-width: $break_md) and (max-width: $break_lg - 1px) {
 	.visible-md {
 		display: block !important;
 	}
@@ -1112,17 +1112,17 @@ hr {
 		display: table-cell !important;
 	}
 }
-@media (min-width: $break_md) and (max-width: 1199px) {
+@media (min-width: $break_md) and (max-width: $break_lg - 1px) {
 	.visible-md-block {
 		display: block !important;
 	}
 }
-@media (min-width: $break_md) and (max-width: 1199px) {
+@media (min-width: $break_md) and (max-width: $break_lg - 1px) {
 	.visible-md-inline {
 		display: inline !important;
 	}
 }
-@media (min-width: $break_md) and (max-width: 1199px) {
+@media (min-width: $break_md) and (max-width: $break_lg - 1px) {
 	.visible-md-inline-block {
 		display: inline-block !important;
 	}
@@ -1157,17 +1157,17 @@ hr {
 		display: inline-block !important;
 	}
 }
-@media (max-width: 767px) {
+@media (max-width: $break_sm - 1px) {
 	.hidden-xs {
 		display: none !important;
 	}
 }
-@media (min-width: $break_sm) and (max-width: 991px) {
+@media (min-width: $break_sm) and (max-width: $break_md - 1px) {
 	.hidden-sm {
 		display: none !important;
 	}
 }
-@media (min-width: $break_md) and (max-width: 1199px) {
+@media (min-width: $break_md) and (max-width: $break_lg - 1px) {
 	.hidden-md {
 		display: none !important;
 	}
