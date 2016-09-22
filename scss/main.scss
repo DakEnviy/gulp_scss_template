@@ -1,13 +1,10 @@
 @import "_vars";
-@import "_mixins";
+@import "_fonts";
 @import "_sprite";
 @import "_grid";
 
 // Load libs
 // @import "";
-
-// Load fonts
-// @include font-face("RobotoRegular", "../fonts/RobotoRegular/RobotoRegular", $exts: eot woff ttf);
 
 
 
@@ -29,6 +26,6 @@ body {
 
 
 // End load
-@import "media";
-
 @import "pages/index";
+
+@import "media";
