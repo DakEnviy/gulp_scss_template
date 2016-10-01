@@ -11,10 +11,10 @@ var through2 = require("through2").obj,
 		File = require("vinyl");
 
 gulp.task("serve", ["styles", "scripts"], function() {
-	// browserSync.init({
-	// 	server: "./app",
-	// 	notify: false
-	// });
+	browserSync.init({
+		server: "./app",
+		notify: false
+	});
 	gulp.watch("scss/**/*.scss", ["styles"]);
 	gulp.watch("libs/**/*.js", ["scripts"]);
 	gulp.watch("app/js/*.js").on("change", browserSync.reload);
@@ -54,10 +54,13 @@ gulp.task("fonts", function() {
 	var fonts = {};
 	return gulp.src("app/fonts/**/*.*")
 		.pipe(through2(function(file, enc, callback) {
-			var name = file.relative.split("/")[0],
+			var path = file.relative.split("/");
+			var name = path[0],
+					style = path[1],
 					ext = file.relative.split(".")[1];
-			if (!fonts.hasOwnProperty(name)) fonts[name] = [];
-			fonts[name].push(ext);
+			if (!fonts.hasOwnProperty(name)) fonts[name] = {};
+			if (!fonts[name].hasOwnProperty(style)) fonts[name][style] = [];
+			fonts[name][style].push(ext);
 			callback();
 		}, function(callback) {
 			var fontsContents = "\
@@ -103,8 +106,22 @@ gulp.task("fonts", function() {
 		src: $src;\n\
 	}\n\
 }\n\n";
-			for (var font in fonts) {
-				fontsContents += "@include font-face(\"" + font + "\", \"../fonts/" + font + "/" + font + "\", $exts: " + fonts[font].join(" ") + ");\n";
+			for (var fontName in fonts) {
+				for (var font in fonts[fontName]) {
+					var weight = "400",
+							style = "normal";
+					if ((/extralight/i).test(font) || (/ultralight/i).test(font)) weight = "200";
+					else if ((/semibold/i).test(font) || (/demibold/i).test(font)) weight = "600";
+					else if ((/extrabold/i).test(font) || (/ultrabold/i).test(font)) weight = "800";
+					else if ((/thin/i).test(font) || (/hairline/i).test(font)) weight = "100";
+					else if ((/light/i).test(font)) weight = "300";
+					else if ((/regular/i).test(font) || (/normal/i).test(font)) weight = "400";
+					else if ((/medium/i).test(font)) weight = "500";
+					else if ((/bold/i).test(font)) weight = "700";
+					else if ((/black/i).test(font) || (/heavy/i).test(font)) weight = "900";
+					if ((/italic/i).test(font)) style = "italic";
+					fontsContents += "@include font-face(\"" + fontName + "\", \"../fonts/" + fontName + "/" + font + "/" + font + "\", " + weight + ", " + style + ", " + fonts[fontName][font].join(" ") + ");\n";
+				}
 			}
 			fontsContents += "\n";
 			this.push(new File({
